@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use app\Http\Controllers\UserController;
-
+//Acara 3
 Route::get('/', function () {
     return view('welcome');
 });
@@ -34,3 +34,6 @@ Route::get('user/{id}',function($id){
 Route::get('search/{search}',function($search){
     return $search;
 })->where('search','.*');
+
+
+//Acara 4
