@@ -56,8 +56,7 @@ Route::middleware(['first', 'second'])->group(function () {
     Route::get('/user/profile', function () {
     });
 });
-Route::
-        namespace('Admin')->group(function () { });
+Route::namespace('Admin')->group(function () { });
 
 Route::domain('{account).myapp.com')->group(function () {
     Route::get('user/{id}', function ($account, $id) {
