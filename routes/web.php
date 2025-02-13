@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\UserController;
+use App\Http\Controllers\UserController;
+
 //Acara 3
 Route::get('/', function () {
     return view('welcome');
@@ -37,18 +38,21 @@ Route::get('search/{search}', function ($search) {
 
 
 //Acara 4
-$url = route('profile');
-return redirect()->route('profile');
-
+// Route Bernama 'profile'
 Route::get('/user/{id}/profile', function ($id) {
+    return "Profil user dengan ID $id";
 })->name('profile');
 
-$url = route('profile', ['id' => 1]);
+// Generate URL ke Route Bernama
+Route::get('/generate-url', function () {
+    $url = route('profile', ['id' => 5]);
+    return "URL ke profile: $url";
+});
 
-Route::get('/user/{id}/profile', function ($id) {
-})->name('profile');
-
-$url = route('profile', ['id' => 1, 'photos' => 'yes']);
+// Redirect ke Route Bernama
+Route::get('/redirect-profile', function () {
+    return redirect()->route('profile', ['id' => 5]);
+});
 
 Route::middleware(['first', 'second'])->group(function () {
     Route::get('/', function () {
