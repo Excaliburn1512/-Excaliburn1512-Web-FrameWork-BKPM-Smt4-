@@ -40,7 +40,7 @@ Route::get('search/{search}', function ($search) {
 $url = route('profile');
 return redirect()->route('profile');
 
-Route::get('user/{id}/profile', function ($id) {
+Route::get('/user/{id}/profile', function ($id) {
 })->name('profile');
 
 $url = route('profile', ['id' => 1]);
