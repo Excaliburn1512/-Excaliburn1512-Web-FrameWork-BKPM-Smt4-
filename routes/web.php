@@ -38,18 +38,15 @@ Route::get('search/{search}', function ($search) {
 
 
 //Acara 4
-// Route Bernama 'profile'
 Route::get('/user/{id}/profile', function ($id) {
     return "Profil user dengan ID $id";
 })->name('profile');
 
-// Generate URL ke Route Bernama
 Route::get('/generate-url', function () {
     $url = route('profile', ['id' => 5]);
     return "URL ke profile: $url";
 });
 
-// Redirect ke Route Bernama
 Route::get('/redirect-profile', function () {
     return redirect()->route('profile', ['id' => 5]);
 });
@@ -60,7 +57,8 @@ Route::middleware(['first', 'second'])->group(function () {
     Route::get('/user/profile', function () {
     });
 });
-Route::namespace('Admin')->group(function () { });
+Route::
+        namespace('Admin')->group(function () { });
 
 Route::domain('{account).myapp.com')->group(function () {
     Route::get('user/{id}', function ($account, $id) {
