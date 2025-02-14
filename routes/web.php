@@ -3,6 +3,7 @@
 use App\Http\Controllers\ManagementUsercontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Frontend\HomeController;
 
 //Acara 3
 Route::get('/index', function () {
@@ -84,3 +85,6 @@ Route::delete('user/{id}', [ManagementUserController::class, 'destroy']);
 
 //Acara 6
 Route::get('/home', [ManagementUserController::class, 'index']);
+
+//Acara 7
+Route::resource('/homeacara7', HomeController::class);
