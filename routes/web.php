@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\ManagementUsercontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
 //Acara 3
-Route::get('/', function () {
+Route::get('/index', function () {
     return view('welcome');
 });
 Route::get('/user', [UserController::class, 'index']);
@@ -16,21 +17,20 @@ Route::any('/', function () {
     return 'ini any';
 });
 Route::redirect('/here', 'there', 301);
-Route::view('/welcome', 'welcome');
-Route::view('/welcome', 'welcome')->name('Taylor');
-Route::get('user/{name?}', function ($name = null) {
+Route::view('/welcome2', 'welcome');
+Route::view('/welcome3', 'welcome')->name('Taylor');
+Route::get('user/acara3/{name?}', function ($name = null) {
     return $name;
 });
-Route::get('user/{name?}', function ($name = "John") {
+Route::get('user/acara3/{name?}', function ($name = "John") {
     return $name;
 });
-Route::get('user/{name}', function ($name) {
+Route::get('user//acara3/{name}', function ($name) {
 
 })->where('name', '[A-Za-z]+');
 Route::get('user/{id}', function ($id) { })->where('id', '[0-9]+');
 Route::get('user/{id}{name}', function ($id, $name) { })->where(['id' => '[0-9]+', 'name' => '[a-z]+']);
 Route::get('user/{id}', function ($id) {
-
 });
 Route::get('search/{search}', function ($search) {
     return $search;
@@ -52,7 +52,7 @@ Route::get('/redirect-profile', function () {
 });
 
 Route::middleware(['first', 'second'])->group(function () {
-    Route::get('/', function () {
+    Route::get('/first', function () {
     });
     Route::get('/user/profile', function () {
     });
@@ -72,3 +72,12 @@ Route::name('admin')->group(function () {
     Route::get('users', function () {
     })->name('users');
 });
+
+//Acara 5
+Route::get('user', [ManagementUserController::class, 'index']);
+Route::get('user/create', [ManagementUserController::class, 'create']);
+Route::post('user', [ManagementUserController::class, 'store']);
+Route::get('user/{id}', [ManagementUserController::class, 'show']);
+Route::get('user/{id}/edit', [ManagementUserController::class, 'edit']);
+Route::put('user/{id}', [ManagementUserController::class, 'update']);
+Route::delete('user/{id}', [ManagementUserController::class, 'destroy']);
