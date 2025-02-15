@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ManagementUsercontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -88,3 +89,8 @@ Route::get('/home', [ManagementUserController::class, 'index']);
 
 //Acara 7
 Route::resource('/homeacara7', HomeController::class);
+//Acara 8
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::resource('dashboard', DashboardController::class);
+    Route::resource('product', ProductController::class);
+});
