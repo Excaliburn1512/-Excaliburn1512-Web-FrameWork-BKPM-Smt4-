@@ -5,6 +5,7 @@ use App\Http\Controllers\ManagementUsercontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\ProductController;
 
 //Acara 3
 Route::get('/index', function () {

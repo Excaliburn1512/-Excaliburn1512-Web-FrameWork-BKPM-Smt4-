@@ -25,22 +25,12 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
-
+                            <div class="row mb-3">
+                                <label for="username" class="col-md-4 col-form-label text-md-end">Username</label>
                                 <div class="col-md-6">
-                                    <input id="username" type="text"
-                                        class="form-control @error('username') is-invalid @enderror" name="username"
-                                        value="{{ old('username') }}" required autocomplete="username">
-
-                                    @error('username')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input id="username" type="text" class="form-control" name="username" required>
                                 </div>
                             </div>
-
                             <div class="row mb-3">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
