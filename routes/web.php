@@ -94,3 +94,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::resource('dashboard', DashboardController::class);
     Route::resource('product', ProductController::class);
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
