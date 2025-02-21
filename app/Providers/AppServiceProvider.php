@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Route;
+use App\Http\Middleware\StartSession;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(StartSession::class);
     }
 
     /**
@@ -20,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Route::pattern('id','[0-9]+');
+        Route::pattern('id', '[0-9]+');
     }
 }

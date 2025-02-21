@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ManagementUsercontroller;
+use App\Http\Middleware\CheckAge;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -98,3 +99,25 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//acara12
+Route::get('/admin/profile1', function () {
+
+})->middleware('auth');
+Route::get('/1', function () {
+
+})->middleware('first', 'second');
+Route::get('/admin/profile2', function () {
+
+})->middleware(CheckAge::class);
+
+Route::get('/2', function () {
+
+})->middleware('web');
+Route::group(['middleware' => ['web']], function () { });
+ROute::middleware(['web', 'subscribed'])->group(function () {
+
+});
+Route::put('post/{id}',function(){
+
+})->middleware('role:editor');
