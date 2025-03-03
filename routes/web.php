@@ -8,7 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\backend\PengalamanKerjaController;
-// use App\Http\Controllers\backend\;
+use App\Http\Controllers\backend\PendidikanController;
+
 //Acara 3
 Route::get('/index', function () {
     return view('welcome');
