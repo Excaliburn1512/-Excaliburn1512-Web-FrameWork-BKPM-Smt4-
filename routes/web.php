@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\backend\PengalamanKerjaController;
+// use App\Http\Controllers\backend\;
 //Acara 3
 Route::get('/index', function () {
     return view('welcome');
@@ -118,6 +119,12 @@ Route::group(['middleware' => ['web']], function () { });
 ROute::middleware(['web', 'subscribed'])->group(function () {
 
 });
-Route::put('post/{id}',function(){
+Route::put('post/{id}', function () {
 
 })->middleware('role:editor');
+
+Route::group(['namespace' => 'App\Http\Controllers\backend'], function() {
+    Route::resource('dash', DashboardController::class);
+    Route::resource('pengalaman_kerja',PengalamanKerjaController::class);
+    Route::resource('pendidikan',PendidikanController::class);
+});
