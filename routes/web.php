@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ManagementUsercontroller;
+use App\Http\Controllers\SessionController;
 use App\Http\Middleware\CheckAge;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\backend\PengalamanKerjaController;
 use App\Http\Controllers\backend\PendidikanController;
+use App\Http\Controllers\PegawaiController;
 
 //Acara 3
 Route::get('/index', function () {
@@ -124,8 +126,16 @@ Route::put('post/{id}', function () {
 
 })->middleware('role:editor');
 
-Route::group(['namespace' => 'App\Http\Controllers\backend'], function() {
+Route::group(['namespace' => 'App\Http\Controllers\backend'], function () {
     Route::resource('dash', DashboardController::class);
-    Route::resource('pengalaman_kerja',PengalamanKerjaController::class);
-    Route::resource('pendidikan',PendidikanController::class);
+    Route::resource('pengalaman_kerja', PengalamanKerjaController::class);
+    Route::resource('pendidikan', PendidikanController::class);
 });
+Route::get('/session/create', [SessionController::class, 'create']);
+Route::get('/session/show', [SessionController::class, 'show']);
+Route::get('/session/delete', [SessionController::class, 'delete']);
+
+Route::get('/pegawai/{nama}', [PegawaiController::class, 'index']);
+
+Route::get('/formulir', [PegawaiController::class, 'formulir']);
+Route::post('/formulir/proses', [PegawaiController::class, 'proses']);
