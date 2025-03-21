@@ -9,11 +9,14 @@
 </head>
 <script type="text/javascript">
     Dropzone.options.imageUpload = {
-        maxFilesize: 10,
+        maxFilesize: 400,
+        maxFile: 10,
+        parallelUploads: 10,
         acceptedFiles: ".jpeg,.jpg,.png,.gif",
         addRemoveLinks: true,
         createImageThumbnails: true,
         autoProcessQueue: false,
+        uploadMultiple: true,
         init: function () {
             var myDropzone = this;
 

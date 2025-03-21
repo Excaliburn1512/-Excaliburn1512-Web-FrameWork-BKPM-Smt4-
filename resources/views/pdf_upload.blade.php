@@ -10,8 +10,11 @@
 <script type="text/javascript">
     Dropzone.options.pdfUpload = {
         maxFilesize: 400,
+        maxFile: 10,
+        parallelUploads: 10,
         acceptedFiles: ".pdf",
         addRemoveLinks: true,
+        uploadMultiple: true,
         autoProcessQueue: false,
         init: function () {
             var myDropzone = this;

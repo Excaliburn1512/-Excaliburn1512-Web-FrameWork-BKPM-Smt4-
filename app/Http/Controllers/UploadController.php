@@ -21,7 +21,12 @@ class UploadController extends Controller
         ]);
 
         // menyimpan data file yang diupload ke variabel $file
-        $file = $request->file('file');
+        $files = $request->file('file');
+
+        foreach ($files as $file) {
+            $file->move('data_file', $file->getClientOriginalName());
+        }
+
 
         // nama file
         echo 'File Name: ' . $file->getClientOriginalName() . '<br>';
@@ -91,13 +96,18 @@ class UploadController extends Controller
 
     public function dropzone_store(Request $request)
     {
-        $image = $request->file('file');
+        $images = $request->file('file');
+        $uploadedFiles = [];
 
-        $imageName = time() . '.' . $image->extension();
-        $image->move(public_path('img/dropzone'), $imageName);
+        foreach ($images as $image) {
+            $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+            $image->move(public_path('img/dropzone'), $imageName);
+            $uploadedFiles[] = $imageName;
+        }
 
-        return response()->json(['success' => $imageName]);
+        return response()->json(['success' => $uploadedFiles]);
     }
+
     public function pdf_upload()
     {
         return view('pdf_upload');
@@ -105,13 +115,18 @@ class UploadController extends Controller
 
     public function pdf_store(Request $request)
     {
-        $pdf = $request->file('file');
+        $pdfs = $request->file('file');
+        $uploadedFiles = [];
 
-        $pdfName = 'pdf_' . time() . '.' . $pdf->extension();
-        $pdf->move(public_path('pdf/dropzone'), $pdfName);
+        foreach ($pdfs as $pdf) {
+            $pdfName = 'pdf_' . time() . '_' . uniqid() . '.' . $pdf->extension();
+            $pdf->move(public_path('pdf/dropzone'), $pdfName);
+            $uploadedFiles[] = $pdfName;
+        }
 
-        return response()->json(['success' => $pdfName]);
+        return response()->json(['success' => $uploadedFiles]);
     }
+
 
 
 

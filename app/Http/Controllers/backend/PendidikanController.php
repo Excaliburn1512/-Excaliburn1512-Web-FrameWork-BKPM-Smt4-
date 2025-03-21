@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pendidikan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,7 +14,7 @@ class PendidikanController extends Controller
      */
     public function index()
     {
-        $pendidikan = DB::table('pendidikan')->get();
+        $pendidikan = Pendidikan::get();
         return view('backend.pendidikan.index', compact('pendidikan'));
     }
 

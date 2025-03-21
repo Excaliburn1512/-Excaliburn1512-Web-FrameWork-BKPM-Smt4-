@@ -104,6 +104,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::resource('product', ProductController::class);
 });
 Auth::routes();
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -130,7 +134,7 @@ Route::put('post/{id}', function () {
 })->middleware('role:editor');
 
 Route::group(['namespace' => 'App\Http\Controllers\backend'], function () {
-    // Route::resource('dash', DashboardController::class);
+    Route::resource('dash', DashboardController::class);
     Route::resource('pengalaman_kerja', PengalamanKerjaController::class);
     Route::resource('pendidikan', PendidikanController::class);
 });
@@ -156,9 +160,6 @@ Route::post('/dropzone/store', [UploadController::class, 'dropzone_store'])->nam
 Route::get('/pdf_upload', [UploadController::class, 'pdf_upload'])->name('pdf.upload');
 Route::post('/pdf/store', [UploadController::class, 'pdf_store'])->name('pdf.store');
 
-
-Route::get('/api/pendidikan', [ApiPendidikanController::class, 'getAll']);
-Route::get('/api/pendidikan/{id}', [ApiPendidikanController::class, 'getPen']);
-Route::post('/api/pendidikan', [ApiPendidikanController::class, 'createPen']);
-Route::put('/api/pendidikan/{id}', [ApiPendidikanController::class, 'updatePen']);
-Route::delete('/api/pendidikan/{id}', [ApiPendidikanController::class, 'deletePen']);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
